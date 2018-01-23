@@ -15,10 +15,15 @@ app.use(bodyParser.urlencoded({extended:false}));
 var router = express.Router();//경로관련
 
 app.use('/',router);
+
 router.route('/login').post(function (req,res) {
     console.log("/login경로 진입");
     var username = req.body.username;
     res.writeHead(200,{"Content-Type":"text/html;charset=utf8"});
     res.write("<h1>전달받은 username : "+username+"</h1>");
     res.end();
+});
+
+app.all('*',function (req,res) {
+  res.send("<h1>정상적인 경로로 진입해주세요</h1>")
 });
